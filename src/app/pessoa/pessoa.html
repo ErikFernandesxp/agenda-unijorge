@@ -1,0 +1,229 @@
+<header class="cabeca">
+  <h2>{{ titulo }}</h2>
+  <p>Preencha os dados pessoais e de contato corretamente.</p>
+</header>
+
+<form class="ficha" (ngSubmit)="salvar()" novalidate>
+  @if (temErro) {
+    <p class="resumo erro">{{ quantidadeDeErros }} campo(s) com erro</p>
+  } @else {
+    <p class="resumo ok">Tudo certo</p>
+  }
+
+  <fieldset>
+    <legend>Dados pessoais</legend>
+
+    <div class="campo">
+      <label for="nomeCompleto">Nome completo</label>
+      <input
+        id="nomeCompleto"
+        name="nomeCompleto"
+        type="text"
+        [(ngModel)]="rascunho.nomeCompleto"
+        [class.invalido]="deveMostrar('nomeCompleto')"
+        (blur)="marcarTocado('nomeCompleto')"
+      >
+      @if (deveMostrar('nomeCompleto')) {
+        <small class="erro">{{ mensagem('nomeCompleto') }}</small>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="dataNascimento">Data de nascimento</label>
+      <input
+        id="dataNascimento"
+        name="dataNascimento"
+        type="date"
+        [(ngModel)]="rascunho.dataNascimento"
+        [class.invalido]="deveMostrar('dataNascimento')"
+        (blur)="marcarTocado('dataNascimento')"
+      >
+      @if (deveMostrar('dataNascimento')) {
+        <small class="erro">{{ mensagem('dataNascimento') }}</small>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="cpf">Numero de CPF</label>
+      <input
+        id="cpf"
+        name="cpf"
+        type="text"
+        inputmode="numeric"
+        [(ngModel)]="rascunho.cpf"
+        [class.invalido]="deveMostrar('cpf')"
+        (blur)="marcarTocado('cpf')"
+      >
+      @if (deveMostrar('cpf')) {
+        <small class="erro">{{ mensagem('cpf') }}</small>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="rg">Numero do RG</label>
+      <input
+        id="rg"
+        name="rg"
+        type="text"
+        [(ngModel)]="rascunho.rg"
+        [class.invalido]="deveMostrar('rg')"
+        (blur)="marcarTocado('rg')"
+      >
+      @if (deveMostrar('rg')) {
+        <small class="erro">{{ mensagem('rg') }}</small>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="nomeMae">Nome da mae</label>
+      <input
+        id="nomeMae"
+        name="nomeMae"
+        type="text"
+        [(ngModel)]="rascunho.nomeMae"
+        [class.invalido]="deveMostrar('nomeMae')"
+        (blur)="marcarTocado('nomeMae')"
+      >
+      @if (deveMostrar('nomeMae')) {
+        <small class="erro">{{ mensagem('nomeMae') }}</small>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="nomePai">Nome do pai</label>
+      <input
+        id="nomePai"
+        name="nomePai"
+        type="text"
+        [(ngModel)]="rascunho.nomePai"
+        [class.invalido]="deveMostrar('nomePai')"
+        (blur)="marcarTocado('nomePai')"
+      >
+      @if (deveMostrar('nomePai')) {
+        <small class="erro">{{ mensagem('nomePai') }}</small>
+      }
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Origem</legend>
+
+    <div class="campo">
+      <label for="paisOrigem">Pais de origem</label>
+      <input
+        id="paisOrigem"
+        name="paisOrigem"
+        type="text"
+        [(ngModel)]="rascunho.paisOrigem"
+        [class.invalido]="deveMostrar('paisOrigem')"
+        (blur)="marcarTocado('paisOrigem')"
+      >
+      @if (deveMostrar('paisOrigem')) {
+        <small class="erro">{{ mensagem('paisOrigem') }}</small>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="ufOrigem">UF de origem</label>
+      <input
+        id="ufOrigem"
+        name="ufOrigem"
+        type="text"
+        maxlength="2"
+        [(ngModel)]="rascunho.ufOrigem"
+        [class.invalido]="deveMostrar('ufOrigem')"
+        (blur)="marcarTocado('ufOrigem')"
+      >
+      @if (deveMostrar('ufOrigem')) {
+        <small class="erro">{{ mensagem('ufOrigem') }}</small>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="cidadeOrigem">Cidade de origem</label>
+      <input
+        id="cidadeOrigem"
+        name="cidadeOrigem"
+        type="text"
+        [(ngModel)]="rascunho.cidadeOrigem"
+        [class.invalido]="deveMostrar('cidadeOrigem')"
+        (blur)="marcarTocado('cidadeOrigem')"
+      >
+      @if (deveMostrar('cidadeOrigem')) {
+        <small class="erro">{{ mensagem('cidadeOrigem') }}</small>
+      }
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Dados de contato</legend>
+
+    <div class="campo">
+      <label for="email">E-mail</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        placeholder="nome@exemplo.com"
+        [(ngModel)]="rascunho.email"
+        [class.invalido]="deveMostrar('email')"
+        (blur)="marcarTocado('email')"
+      >
+      @if (deveMostrar('email')) {
+        <small class="erro">{{ mensagem('email') }}</small>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="telefone">Telefone</label>
+      <input
+        id="telefone"
+        name="telefone"
+        type="tel"
+        [(ngModel)]="rascunho.telefone"
+        [class.invalido]="deveMostrar('telefone')"
+        (blur)="marcarTocado('telefone')"
+      >
+      @if (deveMostrar('telefone')) {
+        <small class="erro">{{ mensagem('telefone') }}</small>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="homepage">Home page</label>
+      <input
+        id="homepage"
+        name="homepage"
+        type="url"
+        placeholder="https://exemplo.com"
+        [(ngModel)]="rascunho.homepage"
+        [class.invalido]="deveMostrar('homepage')"
+        (blur)="marcarTocado('homepage')"
+      >
+      @if (deveMostrar('homepage')) {
+        <small class="erro">{{ mensagem('homepage') }}</small>
+      }
+    </div>
+  </fieldset>
+
+  <div class="acoes">
+    <button type="submit">Salvar</button>
+    <button type="button" class="secundario" (click)="limpar()">Limpar</button>
+  </div>
+</form>
+
+<section class="lista">
+  <h3>Cadastrados ({{ cadastrados.length }})</h3>
+
+  @for (pessoa of cadastrados; track pessoa.id) {
+    <article class="cartao">
+      <div>
+        <b>{{ pessoa.nomeCompleto }}</b>
+        <span>{{ pessoa.email }} &middot; {{ pessoa.cpf }}</span>
+      </div>
+      <button type="button" class="secundario" (click)="remover(pessoa.id)">Remover</button>
+    </article>
+  } @empty {
+    <p class="vazio">Nenhum cadastro ainda. Preencha a ficha acima.</p>
+  }
+</section>
